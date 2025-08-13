@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 env:
-  GO_VERSION: "1.24.4"
+  GO_VERSION: "{{.GoVersion}}"
 
 jobs:
   release:
@@ -21,11 +21,11 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v5
       with:
-        go-version: ${{ env.GO_VERSION }}
+        go-version: ${{`{{ env.GO_VERSION }}`}}
     
     - name: Configure git for private modules
       run: |
-        git config --global url."https://${{ secrets.GROVE_PAT }}@github.com/".insteadOf "https://github.com/"
+        git config --global url."https://${{`{{ secrets.GROVE_PAT }}`}}@github.com/".insteadOf "https://github.com/"
         go env -w GOPRIVATE=github.com/mattsolo1/*
         go env -w GOPROXY=direct
     
@@ -40,15 +40,15 @@ jobs:
     
     - name: Build binaries
       run: |
-        VERSION=$${GITHUB_REF_NAME#v}
+        VERSION=${{`${GITHUB_REF_NAME#v}`}}
         make build-all VERSION=$VERSION
     
     - name: Create release
       uses: softprops/action-gh-release@v2
       with:
         files: |
-          dist/ptg-darwin-amd64
-          dist/ptg-darwin-arm64
-          dist/ptg-linux-amd64
-          dist/ptg-linux-arm64
+          dist/{{.BinaryAlias}}-darwin-amd64
+          dist/{{.BinaryAlias}}-darwin-arm64
+          dist/{{.BinaryAlias}}-linux-amd64
+          dist/{{.BinaryAlias}}-linux-arm64
         generate_release_notes: true

@@ -1,2 +1,3 @@
-name: grove-project-tmpl-go
+name: go
+type: go
 description: Template for Go projects in the Grove ecosystem

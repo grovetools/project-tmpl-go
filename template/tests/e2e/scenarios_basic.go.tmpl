@@ -39,8 +39,8 @@ func BasicScenario() *harness.Scenario {
 				if result.ExitCode != 0 {
 					return result.Error
 				}
-				if !strings.Contains(result.Stdout, "Grove project go template") {
-					return fmt.Errorf("expected help output to contain 'Grove project go template'")
+				if !strings.Contains(result.Stdout, "{{.Description}}") {
+					return fmt.Errorf("expected help output to contain '{{.Description}}'")
 				}
 				return nil
 			}),

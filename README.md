@@ -1,39 +1,45 @@
 # grove-project-tmpl-go
 
-Grove project go template
+Template for Go projects in the Grove ecosystem.
 
-## Installation
+## Overview
 
-```bash
-grove install ptg
+This repository contains the standard template for creating new Go-based Grove projects. It provides the idiomatic structure, configuration files, and boilerplate code that all Grove Go projects should follow.
+
+## Structure
+
+```
+grove-project-tmpl-go/
+├── template/                    # Template files
+│   ├── .github/                 # GitHub Actions workflows
+│   ├── cmd/                     # Command implementations
+│   ├── tests/                   # Test structure
+│   ├── go.mod.tmpl             # Go module template
+│   ├── grove.yml.tmpl          # Grove configuration (includes type: go)
+│   ├── Makefile.tmpl           # Standard build targets
+│   └── ...                     # Other template files
+└── grove-template.yml          # Template manifest
 ```
 
 ## Usage
 
-```bash
-ptg --help
-```
-
-## Development
-
-### Building
+This template is used by `grove add-repo` when creating new Go projects:
 
 ```bash
-make build
+grove add-repo my-new-project
+# or explicitly:
+grove add-repo my-new-project --template go
 ```
 
-### Testing
+## Template Variables
 
-```bash
-make test
-make test-e2e
-```
-
-### Linting
-
-```bash
-make lint
-```
+The templates use the following variables:
+- `{{.RepoName}}` - The repository name
+- `{{.BinaryAlias}}` - The binary alias/command name
+- `{{.Description}}` - Project description
+- `{{.GoVersion}}` - Go version
+- `{{.CoreVersion}}` - grove-core version
+- `{{.TendVersion}}` - grove-tend version
 
 ## Contributing
 
