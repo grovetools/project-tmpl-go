@@ -1,0 +1,6 @@
+name: grove-project-tmpl-go
+description: Grove project go template
+type: go
+binary:
+  name: ptg
+  path: ./bin/ptg

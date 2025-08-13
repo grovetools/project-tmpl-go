@@ -1,0 +1,40 @@
+# grove-project-tmpl-go
+
+Grove project go template
+
+## Installation
+
+```bash
+grove install ptg
+```
+
+## Usage
+
+```bash
+ptg --help
+```
+
+## Development
+
+### Building
+
+```bash
+make build
+```
+
+### Testing
+
+```bash
+make test
+make test-e2e
+```
+
+### Linting
+
+```bash
+make lint
+```
+
+## Contributing
+
+This is a private repository. Please ensure all contributions follow the Grove ecosystem conventions.
