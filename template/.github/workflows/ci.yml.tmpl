@@ -28,11 +28,13 @@ jobs:
       with:
         go-version: ${{`{{ env.GO_VERSION }}`}}
     
+    {{- if not .IsPublic }}
     - name: Configure git for private modules
       run: |
         git config --global url."https://${{`{{ secrets.GROVE_PAT }}`}}@github.com/".insteadOf "https://github.com/"
         go env -w GOPRIVATE=github.com/mattsolo1/*
         go env -w GOPROXY=direct
+    {{- end }}
     
     - name: Update dependencies
       run: |
