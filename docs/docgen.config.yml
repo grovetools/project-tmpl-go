@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mattsolo1/grove-docgen/main/schema/docgen.config.schema.json
+enabled: true
+title: "Grove Go Project Template"
+description: "Template for creating Go-based CLI tools that integrate with the Grove ecosystem."
+category: "Repository Templates"
+settings:
+  model: "gemini-2.5-pro"
+  system_prompt: "default"
+  rules_file: "docs.rules"
+  temperature: 0.3
+  regeneration_mode: scratch
+
+sections:
+  - name: "overview"
+    title: "Overview"
+    order: 1
+    prompt: "prompts/01-overview.md"
+    output: "01-overview.md"
