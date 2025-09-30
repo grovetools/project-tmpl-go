@@ -1,5 +1,7 @@
 <!-- DOCGEN:OVERVIEW:START -->
 
+# Grove Go Project Template
+
 This repository provides a project template for creating new Go-based command-line interface (CLI) tools that integrate with the Grove ecosystem. It establishes a standard project structure, includes boilerplate for build automation and testing, and ensures consistency across all Grove tools.
 
 ## Usage
@@ -91,6 +93,6 @@ After creating a new project from this template, you can immediately start devel
 <!-- DOCGEN:TOC:START -->
 
 See the [documentation](docs/) for detailed usage instructions:
-- [Overview](docs/01-overview.md) - This repository provides a project template for creating new Go-based command...
+- [Overview](docs/01-overview.md)
 
 <!-- DOCGEN:TOC:END -->
