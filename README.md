@@ -2,28 +2,26 @@
 
 # Grove Go Project Template
 
-This repository provides a project template for creating new Go-based command-line interface (CLI) tools that integrate with the Grove ecosystem. It establishes a standard project structure, includes boilerplate for build automation and testing, and ensures consistency across all Grove tools.
+This repository contains a project template for generating Go-based command-line interface (CLI) tools that integrate with the Grove ecosystem. It provides a standard project structure, CI/CD workflow files, and build automation scripts.
+
+## How It Works
+
+The template is processed by the `grove` tool during repository creation. Files with a `.tmpl` extension are executed as Go templates, substituting variables like the repository name (`{{.RepoName}}`) and binary alias (`{{.BinaryAlias}}`). All other files are copied directly into the new project's directory structure.
 
 ## Usage
 
-This template is used by the `grove add-repo` command to scaffold a new repository. When creating a Go project, this template is used by default.
+This template is consumed by the `grove add-repo` command.
 
 ```bash
 # Create a new Go project using this template
-grove add-repo my-new-tool --alias mnt --ecosystem --skip-github
+grove add-repo my-new-tool --alias mnt
 ```
 
-You can also specify it explicitly:
-
-```bash
-grove add-repo my-new-tool --template go
-```
-
-This process generates a new project directory with a complete, runnable skeleton application based on the files in this template.
+This command generates a new project directory containing a runnable skeleton application based on the files in this template.
 
 ## Project Structure
 
-A new project created from this template will have the following structure:
+A new project generated from this template will have the following structure:
 
 ```
 my-new-tool/
@@ -45,16 +43,16 @@ my-new-tool/
 └── README.md
 ```
 
--   **`cmd/`**: Contains the Cobra command implementations. `root.go` sets up the main command, and you can add other command files here.
--   **`tests/e2e/`**: A pre-configured end-to-end testing harness using `grove-tend`.
--   **`go.mod`**: Defines the Go module and its dependencies, including `grove-core`.
--   **`grove.yml`**: Configures the tool for the Grove ecosystem, defining its name, type, and binary path.
--   **`Makefile`**: Provides standardized `make` targets for common development tasks like building, testing, and linting.
--   **`main.go`**: The entry point for the application, which executes the root Cobra command.
+-   **`cmd/`**: Contains Cobra command source files.
+-   **`tests/e2e/`**: Contains an end-to-end test harness using `grove-tend`.
+-   **`go.mod`**: Defines the Go module and its dependencies.
+-   **`grove.yml`**: Configures the tool's name and binary path for the Grove ecosystem.
+-   **`Makefile`**: Provides `make` targets for building, testing, and linting.
+-   **`main.go`**: The application entry point that executes the root Cobra command.
 
 ## Getting Started
 
-After creating a new project from this template, you can immediately start development with these steps:
+After a new project has been created from this template, the following steps can be used to build and run it:
 
 1.  **Navigate to the new directory**:
     ```bash
@@ -62,26 +60,25 @@ After creating a new project from this template, you can immediately start devel
     ```
 
 2.  **Resolve dependencies**:
-    The template includes initial dependencies. Run `go mod tidy` to ensure they are correctly resolved.
+    Run `go mod tidy` to download and verify dependencies.
     ```bash
     go mod tidy
     ```
 
 3.  **Build the binary**:
-    Use the provided `Makefile` to build the tool.
+    Use the `Makefile` to build the tool. The binary is created at `./bin/my-new-tool`.
     ```bash
     make build
     ```
-    This creates the binary at `./bin/my-new-tool`.
 
-4.  **Run the new command**:
-    Execute the compiled binary to see the default help output.
+4.  **Run the command**:
+    Execute the compiled binary.
     ```bash
     ./bin/my-new-tool --help
     ```
 
 5.  **Run tests**:
-    The template includes a testing framework. Run the tests to verify the initial setup.
+    The template includes unit and end-to-end test frameworks.
     ```bash
     make test
     make test-e2e

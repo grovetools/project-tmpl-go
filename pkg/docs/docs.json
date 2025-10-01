@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "overview": {
+      "title": "Overview",
+      "content": "This repository contains a project template for generating Go-based command-line interface (CLI) tools that integrate with the Grove ecosystem. It provides a standard project structure, CI/CD workflow files, and build automation scripts.",
+      "subsections": [
+        {
+          "title": "How It Works",
+          "content": "The template is processed by the `grove` tool during repository creation. Files with a `.tmpl` extension are executed as Go templates, substituting variables like the repository name (`{{.RepoName}}`) and binary alias (`{{.BinaryAlias}}`). All other files are copied directly into the new project's directory structure."
+        },
+        {
+          "title": "Usage",
+          "content": "This template is consumed by the `grove add-repo` command.\n\n\nThis command generates a new project directory containing a runnable skeleton application based on the files in this template.",
+          "code_blocks": [
+            "# Create a new Go project using this template\ngrove add-repo my-new-tool --alias mnt"
+          ]
+        },
+        {
+          "title": "Project Structure",
+          "content": "A new project generated from this template will have the following structure:\n\n\n-   **`cmd/`**: Contains Cobra command source files.\n-   **`tests/e2e/`**: Contains an end-to-end test harness using `grove-tend`.\n-   **`go.mod`**: Defines the Go module and its dependencies.\n-   **`grove.yml`**: Configures the tool's name and binary path for the Grove ecosystem.\n-   **`Makefile`**: Provides `make` targets for building, testing, and linting.\n-   **`main.go`**: The application entry point that executes the root Cobra command.",
+          "code_blocks": [
+            "my-new-tool/\n├── .github/\n│   └── workflows/\n│       ├── ci.yml         # Continuous integration workflow\n│       └── release.yml    # Automated release workflow\n├── cmd/\n│   ├── root.go          # Cobra root command setup\n│   └── version.go       # Standard version command\n├── tests/\n│   └── e2e/             # End-to-end test suite setup with grove-tend\n├── .gitignore\n├── CHANGELOG.md\n├── go.mod               # Go module definition\n├── grove.yml            # Grove tool configuration\n├── Makefile             # Standard build, test, and lint targets\n├── main.go              # Main application entry point\n└── README.md"
+          ]
+        },
+        {
+          "title": "Getting Started",
+          "content": "After a new project has been created from this template, the following steps can be used to build and run it:\n\n1.  **Navigate to the new directory**:\n    ```bash\n    cd my-new-tool\n    ```\n\n2.  **Resolve dependencies**:\n    Run `go mod tidy` to download and verify dependencies.\n    ```bash\n    go mod tidy\n    ```\n\n3.  **Build the binary**:\n    Use the `Makefile` to build the tool. The binary is created at `./bin/my-new-tool`.\n    ```bash\n    make build\n    ```\n\n4.  **Run the command**:\n    Execute the compiled binary.\n    ```bash\n    ./bin/my-new-tool --help\n    ```\n\n5.  **Run tests**:\n    The template includes unit and end-to-end test frameworks.\n    ```bash\n    make test\n    make test-e2e\n    ```"
+        }
+      ]
+    }
+  }
+}
