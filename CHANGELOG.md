@@ -1,3 +1,5 @@
+## v0.1.1-nightly.a1b2c3d (2025-10-03)
+
 ## v0.1.0 (2025-10-01)
 
 This release introduces a documentation generation system for the project template. The initial structure was established with configuration files, rules, and prompts to automate content creation (1b3f361, 563e010). Key new functionality includes automatic Table of Contents (TOC) generation for the main `README.md` file (450def3, a74d6ad). The system has also been refined by standardizing the configuration file format and improving the conciseness of the generated output (3122d3b, 910d09b).
