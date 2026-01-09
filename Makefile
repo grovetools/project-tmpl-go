@@ -1,8 +1,11 @@
 # Makefile for grove-project-tmpl-go
 
-.PHONY: all test clean fmt vet lint check help
+.PHONY: all build test clean fmt vet lint check help
 
 all: test
+
+build:
+	@echo "Template project - no build needed"
 
 test:
 	@echo "Running tests..."
