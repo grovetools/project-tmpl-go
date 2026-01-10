@@ -1,6 +1,14 @@
 name: {{.RepoName}}
 description: {{.Description}}
-type: go
 binary:
   name: {{.BinaryAlias}}
   path: ./bin/{{.BinaryAlias}}
+
+logging:
+  file:
+    enabled: true
+    format: json
+  report_caller: true
+
+context:
+  default_rules_path: .cx/dev-no-tests.rules
