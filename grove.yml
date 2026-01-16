@@ -1,4 +1,4 @@
-name: grove-project-tmpl-go
+name: project-tmpl-go
 description: Template for Go projects in the Grove ecosystem
 
 context:
