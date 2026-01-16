@@ -1,5 +1,5 @@
 enabled: true
-title: Grove Go Template
+title: project-tmpl-go
 description: Template for creating Go-based CLI tools that integrate with the Grove ecosystem.
 category: Repository Templates
 settings:
