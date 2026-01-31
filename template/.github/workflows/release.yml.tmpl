@@ -35,7 +35,7 @@ jobs:
     - name: Configure git for private modules
       run: |
         git config --global url."https://${{`{{ secrets.GROVE_PAT }}`}}@github.com/".insteadOf "https://github.com/"
-        go env -w GOPRIVATE=github.com/mattsolo1/*
+        go env -w GOPRIVATE=github.com/grovetools/*
         go env -w GOPROXY=direct
     {{- end }}
     
