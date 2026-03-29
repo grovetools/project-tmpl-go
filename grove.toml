@@ -2,4 +2,4 @@ name = "project-tmpl-go"
 description = "Template for Go projects in the Grove ecosystem"
 
 [context]
-default_rules_path = ".cx/dev-no-tests.rules"
+default_rules = "dev-no-tests"
