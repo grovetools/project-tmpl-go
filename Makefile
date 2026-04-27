@@ -1,6 +1,6 @@
 # Makefile for grove-project-tmpl-go
 
-.PHONY: all build test clean fmt vet lint check help
+.PHONY: all build test clean fmt fmt-check vet lint check help
 
 all: test
 
@@ -25,7 +25,19 @@ fmt:
 	@if ! find . -name '*.go' -not -path './template/*' | grep -q .; then \
 		echo "No .go files to format (template-only repo)"; \
 	else \
-		go fmt ./...; \
+		gofumpt -w .; \
+	fi
+
+fmt-check:
+	@if ! find . -name '*.go' -not -path './template/*' | grep -q .; then \
+		echo "No .go files to check (template-only repo)"; \
+	else \
+		unformatted="$$(gofumpt -l . 2>/dev/null)"; \
+		if [ -n "$$unformatted" ]; then \
+			echo "Unformatted files (run 'make fmt'):"; \
+			echo "$$unformatted" | sed 's/^/  /'; \
+			exit 1; \
+		fi; \
 	fi
 
 vet:
@@ -47,7 +59,7 @@ lint:
 	fi
 
 # Run all checks
-check: fmt vet lint test
+check: fmt-check vet lint test
 
 # Show available targets
 help:
