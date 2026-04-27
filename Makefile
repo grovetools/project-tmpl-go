@@ -9,7 +9,11 @@ build:
 
 test:
 	@echo "Running tests..."
-	@go test -v ./...
+	@if ! find . -name '*.go' -not -path './template/*' | grep -q .; then \
+		echo "No .go files to test (template-only repo)"; \
+	else \
+		go test -v ./...; \
+	fi
 
 clean:
 	@echo "Cleaning..."
@@ -18,15 +22,25 @@ clean:
 
 fmt:
 	@echo "Formatting code..."
-	@go fmt ./...
+	@if ! find . -name '*.go' -not -path './template/*' | grep -q .; then \
+		echo "No .go files to format (template-only repo)"; \
+	else \
+		go fmt ./...; \
+	fi
 
 vet:
 	@echo "Running go vet..."
-	@go vet ./...
+	@if ! find . -name '*.go' -not -path './template/*' | grep -q .; then \
+		echo "No .go files to vet (template-only repo)"; \
+	else \
+		go vet ./...; \
+	fi
 
 lint:
 	@echo "Running linter..."
-	@if command -v golangci-lint > /dev/null; then \
+	@if ! find . -name '*.go' -not -path './template/*' | grep -q .; then \
+		echo "No .go files to lint (template-only repo)"; \
+	elif command -v golangci-lint > /dev/null; then \
 		golangci-lint run; \
 	else \
 		echo "golangci-lint not installed. Install with: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest"; \
