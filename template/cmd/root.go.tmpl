@@ -2,18 +2,24 @@ package cmd
 
 import (
 	"github.com/grovetools/core/cli"
+	"github.com/grovetools/core/logging"
 	"github.com/spf13/cobra"
 )
 
-var rootCmd *cobra.Command
+var (
+	rootCmd *cobra.Command
+
+	// Unified logger: use ulog.Info("msg").Field("k", v).Emit() for dual
+	// pretty + structured output. For structured-only, chain .StructuredOnly().
+	ulog = logging.NewUnifiedLogger("{{.BinaryAlias}}")
+)
 
 func init() {
 	rootCmd = cli.NewStandardCommand("{{.BinaryAlias}}", "{{.Description}}")
 
-	// Add commands
 	rootCmd.AddCommand(newVersionCmd())
 }
 
 func Execute() error {
-	return rootCmd.Execute()
+	return cli.Execute(rootCmd)
 }
